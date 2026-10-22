@@ -21,7 +21,9 @@ import sys
 import urllib.request
 from pathlib import Path
 
-import fetch_iocs  # the MVT spyware index logic lives there and is reused unchanged
+# `python -I` (isolated, as the Action runs it) does not put the script's own folder on sys.path.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import fetch_iocs  # noqa: E402  the MVT spyware index logic lives there and is reused unchanged
 
 PINNED = {
     "mvt_index": fetch_iocs.PINNED_INDEX,
